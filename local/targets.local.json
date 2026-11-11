@@ -1,0 +1,16 @@
+{
+  "a-2pct":  {"kind": "droplet", "url": "http://127.0.0.1:8081", "token_env": "AGENT_TOKEN"},
+  "a-30pct": {"kind": "droplet", "url": "http://127.0.0.1:8082", "token_env": "AGENT_TOKEN"},
+  "b-2pct":  {"kind": "functions", "apihost": "http://127.0.0.1:9200", "namespace": "fn-local",
+              "action": "agent/handle_2pct"},
+  "b-30pct": {"kind": "functions", "apihost": "http://127.0.0.1:9200", "namespace": "fn-local",
+              "action": "agent/handle_30pct"},
+  "c-2pct":  {"kind": "managed_agents", "session": "c-2pct", "pause_policy": "explicit",
+              "min_gap_to_pause_s": 1, "wait_s": 2},
+  "c-30pct": {"kind": "managed_agents", "session": "c-30pct", "pause_policy": "explicit",
+              "min_gap_to_pause_s": 1, "wait_s": 2},
+  "b-state": {"kind": "functions", "apihost": "http://127.0.0.1:9200", "namespace": "fn-local",
+              "action": "agent/state"},
+  "c-state": {"kind": "managed_agents", "session": "c-state", "pause_policy": "explicit",
+              "min_gap_to_pause_s": 0, "wait_s": 2}
+}

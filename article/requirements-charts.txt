@@ -1,0 +1,2 @@
+# Only needed to redraw article/images/*.png
+matplotlib>=3.7

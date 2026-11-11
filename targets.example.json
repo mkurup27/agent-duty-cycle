@@ -1,0 +1,37 @@
+{
+  "_comment": "Copy to targets.json. Secrets are never stored here: each *_env field names an env var on the driver.",
+
+  "a-2pct":  {"kind": "droplet", "url": "http://10.10.0.11:8080", "token_env": "TOKEN_A_2PCT"},
+  "a-30pct": {"kind": "droplet", "url": "http://10.10.0.12:8080", "token_env": "TOKEN_A_30PCT"},
+  "a-g1m":   {"kind": "droplet", "url": "http://10.10.0.13:8081", "token_env": "TOKEN_A_G1M"},
+  "a-g15m":  {"kind": "droplet", "url": "http://10.10.0.13:8082", "token_env": "TOKEN_A_G15M"},
+  "a-g1h":   {"kind": "droplet", "url": "http://10.10.0.13:8083", "token_env": "TOKEN_A_G1H"},
+  "a-g6h":   {"kind": "droplet", "url": "http://10.10.0.13:8084", "token_env": "TOKEN_A_G6H"},
+  "a-g24h":  {"kind": "droplet", "url": "http://10.10.0.13:8085", "token_env": "TOKEN_A_G24H"},
+
+  "b-2pct":  {"kind": "functions", "apihost": "https://faas-nyc1-XXXX.doserverless.co",
+              "namespace": "fn-XXXX", "action": "agent/handle_2pct"},
+  "b-30pct": {"kind": "functions", "apihost": "https://faas-nyc1-XXXX.doserverless.co",
+              "namespace": "fn-XXXX", "action": "agent/handle_30pct"},
+  "b-state": {"kind": "functions", "apihost": "https://faas-nyc1-XXXX.doserverless.co",
+              "namespace": "fn-XXXX", "action": "agent/state"},
+  "b-g1m":   {"kind": "functions", "apihost": "https://faas-nyc1-XXXX.doserverless.co",
+              "namespace": "fn-XXXX", "action": "agent/probe_g1m"},
+  "b-g15m":  {"kind": "functions", "apihost": "https://faas-nyc1-XXXX.doserverless.co",
+              "namespace": "fn-XXXX", "action": "agent/probe_g15m"},
+  "b-g1h":   {"kind": "functions", "apihost": "https://faas-nyc1-XXXX.doserverless.co",
+              "namespace": "fn-XXXX", "action": "agent/probe_g1h"},
+  "b-g6h":   {"kind": "functions", "apihost": "https://faas-nyc1-XXXX.doserverless.co",
+              "namespace": "fn-XXXX", "action": "agent/probe_g6h"},
+  "b-g24h":  {"kind": "functions", "apihost": "https://faas-nyc1-XXXX.doserverless.co",
+              "namespace": "fn-XXXX", "action": "agent/probe_g24h"},
+
+  "c-2pct":  {"kind": "managed_agents", "session": "dc-c-2pct",  "pause_policy": "explicit", "min_gap_to_pause_s": 60},
+  "c-30pct": {"kind": "managed_agents", "session": "dc-c-30pct", "pause_policy": "explicit", "min_gap_to_pause_s": 60},
+  "c-state": {"kind": "managed_agents", "session": "dc-c-state", "pause_policy": "explicit", "min_gap_to_pause_s": 0},
+  "c-g1m":   {"kind": "managed_agents", "session": "dc-c-g1m",   "pause_policy": "explicit", "min_gap_to_pause_s": 0},
+  "c-g15m":  {"kind": "managed_agents", "session": "dc-c-g15m",  "pause_policy": "explicit", "min_gap_to_pause_s": 0},
+  "c-g1h":   {"kind": "managed_agents", "session": "dc-c-g1h",   "pause_policy": "explicit", "min_gap_to_pause_s": 0},
+  "c-g6h":   {"kind": "managed_agents", "session": "dc-c-g6h",   "pause_policy": "explicit", "min_gap_to_pause_s": 0},
+  "c-g24h":  {"kind": "managed_agents", "session": "dc-c-g24h",  "pause_policy": "explicit", "min_gap_to_pause_s": 0}
+}

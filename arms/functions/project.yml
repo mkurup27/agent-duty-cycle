@@ -1,0 +1,65 @@
+# DO Functions project for arm (b). Deploy with ./deploy.sh (not directly):
+# deploy.sh vendors ../../core into every action directory first.
+#
+# Each experiment gets its OWN action so warm containers from one schedule
+# never serve another (that would contaminate cold-start statistics).
+# Values come from .env in this directory (copy .env.example).
+
+environment:
+  DATABASE_URL: ${DATABASE_URL}
+  PG_CA_CERT: ${PG_CA_CERT}
+  SPACES_ENDPOINT: ${SPACES_ENDPOINT}
+  SPACES_REGION: ${SPACES_REGION}
+  SPACES_BUCKET: ${SPACES_BUCKET}
+  SPACES_KEY: ${SPACES_KEY}
+  SPACES_SECRET: ${SPACES_SECRET}
+  MODEL_BASE_URL: ${MODEL_BASE_URL}
+  MODEL_ID: ${MODEL_ID}
+  MODEL_ACCESS_KEY: ${MODEL_ACCESS_KEY}
+
+packages:
+  - name: agent
+    functions:
+      # Experiment 1: main one-week cost run, one action per duty cycle
+      - name: handle_2pct
+        runtime: python:default
+        web: false
+        limits: {timeout: 900000, memory: 512}
+        environment: {AGENT_ID: b-main-2pct}
+      - name: handle_30pct
+        runtime: python:default
+        web: false
+        limits: {timeout: 900000, memory: 512}
+        environment: {AGENT_ID: b-main-30pct}
+      # Experiment 4: rehydration vs state size (1 GB = Functions maximum)
+      - name: state
+        runtime: python:default
+        web: false
+        limits: {timeout: 900000, memory: 1024}
+        environment: {AGENT_ID: b-state}
+      # Experiment 3: wake latency, one action per idle-gap bucket
+      - name: probe_g1m
+        runtime: python:default
+        web: false
+        limits: {timeout: 300000, memory: 512}
+        environment: {AGENT_ID: b-probe-g1m}
+      - name: probe_g15m
+        runtime: python:default
+        web: false
+        limits: {timeout: 300000, memory: 512}
+        environment: {AGENT_ID: b-probe-g15m}
+      - name: probe_g1h
+        runtime: python:default
+        web: false
+        limits: {timeout: 300000, memory: 512}
+        environment: {AGENT_ID: b-probe-g1h}
+      - name: probe_g6h
+        runtime: python:default
+        web: false
+        limits: {timeout: 300000, memory: 512}
+        environment: {AGENT_ID: b-probe-g6h}
+      - name: probe_g24h
+        runtime: python:default
+        web: false
+        limits: {timeout: 300000, memory: 512}
+        environment: {AGENT_ID: b-probe-g24h}
